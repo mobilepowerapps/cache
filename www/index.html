@@ -1,36 +1,20 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
+<head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <script type="text/javascript" src="phonegap.js"></script>
 
         <title>Test</title>
-    </head>
-    <body>
+</head>
+<body>
+
 <script>
 function consolelog( msg ) {
 	var y=document.getElementById("mess");
-	y.innerHTML= y.innerHTML+ "<br>Msg: " + msg + ".";
+	y.innerHTML= y.innerHTML+ "<br>Log: " + msg;
 
 }
 
@@ -42,31 +26,10 @@ function consolelog( msg ) {
 //		"/assets/www/workout.mp4" etc
 
 var cache = {
-//	uri: "file:///mnt/sdcard/cpt",	// file url should be on android
 	url: "http://cpt.aws.af.cm",	// web server
-	dir: "cpt",					// dir for sdcard
+	dir: "cpt",						// dir for sdcard
 	
-	// get or create directory if not there
-	initialize: function() {
-		window.requestFileSystem(
-			LocalFileSystem.PERSISTENT,
-			0, 
-			function(fileSystem) { 
-				fileSystem.root.getDirectory(
-					cache.dir,
-					{create: true, exclusive: false}, 
-					function( dir ){ // cb success
-						consolelog("Created dir "+dir.name); 
-					},
-					function( err ) { //cb fail
-						consolelog("Error creating directory "+err.code); 
-					}
-					); 
-			},
-			null); 
-		},
-
-	// dose file exist
+	// file exist get from server
 	findFile: function( f ){
 		var url = encodeURI( cache.url + "/" + f ) ;
 		window.requestFileSystem(
@@ -105,6 +68,9 @@ var cache = {
 } ;
 
 
+function src( id, file ) {
+	document.getElementById( id ).setAttribute("src", cache.findFile( file ) ) ;
+}
 
 
 function test( file ) {
