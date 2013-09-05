@@ -26,8 +26,8 @@ function consolelog( msg ) {
 //		"/assets/www/workout.mp4" etc
 
 var cache = {
-	url: "http://cpt.aws.af.cm",	// web server
-	dir: "cpt",						// dir for sdcard
+	url: "http://cpt.aws.af.cm/cpt",	// web server
+	dir: "cpt",							// dir for sdcard
 	
 	// file exist get from server
 	findFile: function( f ){
@@ -93,14 +93,14 @@ function test( file ) {
 
 Hello there<br>
 
-<img id="img" src="http://wallsizes.com/wp-content/uploads/2013/06/Best-Custom-Bike-Wallpaper.jpg"></img><br>
-<button onclick="src('img', 'http://www.wired.com/images_blogs/gadgetlab/puma-Bike-Profile.jpg';">Change IMG</button><br>
+<img id="img" src="http://cpt.aws.af.cm/cpt/bike1.jpg"></img><br>
+<button onclick="src('img', 'bike2.gif');">Change IMG</button><br>
 
-<audio id="audio" src="hooray.mp3"></audio><br>
-<button onclick="playsrc('audio', 'bell.mp3';">Change Audio</button><br>
+<audio id="audio" src="http://cpt.aws.af.cm/cpt/hooray.mp3"></audio><br>
+<button onclick="playsrc('audio', 'bell.mp3');">Change Audio</button><br>
 
-<video id="video" src="workout.mp4" controls></video><br>
-<button onclick="playsrc('video', 'workout.mp4';">Change Video</button><br>
+<video id="video" src="http://cpt.aws.af.cm/cpt/workout.mp4" controls></video><br>
+<button onclick="playsrc('video', 'workout.mp4');">Change Video</button><br>
 
 <button onclick="test('hooray.mp3');">Load hooray.mp3</button><br>
 <button onclick="test('workout.mp4');">Load workout.mp4</button><br>
