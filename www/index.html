@@ -32,6 +32,7 @@ var cache = {
 	// file exist get from server
 	findFile: function( f ){
 		var url = encodeURI( cache.url + "/" + f ) ;
+		var result = url ;
 		window.requestFileSystem(
 			LocalFileSystem.PERSISTENT,
 			0, 
@@ -42,7 +43,8 @@ var cache = {
 					cache.dir + "/" + f,
 					{create: false}, 
 					function( f ){ // success
-						consolelog("in cache "+f.name); 
+						consolelog("in cache "+f.name);
+						result = fname ;
 					},
 					function( err ){ // fail not in cache
 						consolelog("ft:"+url) ;
@@ -61,6 +63,7 @@ var cache = {
 				); 
 			},
 			null); 
+		return result ;
 		}
 
 	
@@ -69,6 +72,10 @@ var cache = {
 
 function src( id, file ) {
 	document.getElementById( id ).setAttribute("src", cache.findFile( file ) ) ;
+}
+function playsrc( id, file ) {
+	document.getElementById( id ).setAttribute("src", cache.findFile( file ) ) ;
+	document.getElementById( id ).play() ;
 }
 
 
@@ -85,6 +92,16 @@ function test( file ) {
 </script>
 
 Hello there<br>
+
+<img id="img" src="http://wallsizes.com/wp-content/uploads/2013/06/Best-Custom-Bike-Wallpaper.jpg"></img><br>
+<button onclick="src('img', 'http://www.wired.com/images_blogs/gadgetlab/puma-Bike-Profile.jpg';">Change IMG</button><br>
+
+<audio id="audio" src="hooray.mp3"></audio><br>
+<button onclick="playsrc('audio', 'bell.mp3';">Change Audio</button><br>
+
+<video id="video" src="workout.mp4" controls></video><br>
+<button onclick="playsrc('video', 'workout.mp4';">Change Video</button><br>
+
 <button onclick="test('hooray.mp3');">Load hooray.mp3</button><br>
 <button onclick="test('workout.mp4');">Load workout.mp4</button><br>
 <button onclick="test('jnk.mp3');">Load jnk.mp3</button><br>
