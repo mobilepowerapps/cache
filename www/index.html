@@ -39,7 +39,7 @@ var cache = {
 				var fname = fileSystem.root.fullPath + "/" + cache.dir + "/" + f ;
 				consolelog("getfile:"+fname);
 				fileSystem.root.getFile(
-					fname,
+					cache.dir + "/" + f,
 					{create: false}, 
 					function( f ){ // success
 						consolelog("in cache "+f.name); 
@@ -57,7 +57,6 @@ var cache = {
 								consolelog("Download Err: "+ url);
 							}
 						);
-						consolelog("Error creating directory "+err.code); 
 					}
 				); 
 			},
