@@ -87,6 +87,9 @@ function playsrc( id, file ) {
 	document.getElementById( id ).setAttribute("src", cache.findFile( file ) ) ;
 	document.getElementById( id ).play() ;
 }
+function play( id ) {
+	document.getElementById( id ).play() ;
+}
 
 // cache call from timeout cb
 function totest() {
@@ -118,21 +121,35 @@ function test( file ) {
 
 Hello there<br>
 
+<!--
 <img id="img" src="http://cpt.aws.af.cm/cpt/bike1.jpg"></img><br>
 <button onclick="src('img', 'bike2.gif');">Change IMG</button><br>
+-->
+Android Audio<br>
+<audio id="audio1" src="hooray.mp3" controls ></audio><br>
+<button onclick="play('audio1');">PLAY id="audio1" src="hooray.mp3" controls</button><br>
 
-<audio id="audio" src="http://cpt.aws.af.cm/cpt/hooray.mp3" controls ></audio><br>
-<button onclick="playsrc('audio', 'bell.mp3');">Change Audio</button><br>
+<audio id="audio2" src="hooray.mp3" type="audio/mpeg" controls ></audio><br>
+<button onclick="play('audio2');">PLAY id="audio2" src="hooray.mp3" type="audio/mpeg" controls </button><br>
 
-<video id="video" src="http://cpt.aws.af.cm/cpt/workout.mp4" controls></video><br>
-<button onclick="playsrc('video', 'workout.mp4');">Change Video</button><br>
 
-<audio id="audiot" src="http://cpt.aws.af.cm/cpt/hooray.mp3" type="audio/mpeg" controls ></audio><br>
-<button onclick="playsrc('audiot', 'bell.mp3');">Change Audiot</button><br>
+<audio id="audio3" src="http://cpt.aws.af.cm/cpt/hooray.mp3" controls ></audio><br>
+<button onclick="play('audio3');">PLAY id="audio3" src="http://cpt.aws.af.cm/cpt/hooray.mp3" controls</button><br>
 
-<video id="videot" src="http://cpt.aws.af.cm/cpt/workout.mp4" type="video/mp4" controls></video><br>
-<button onclick="playsrc('videot', 'workout.mp4');">Change Videot</button><br>
+<audio id="audio4" src="http://cpt.aws.af.cm/cpt/hooray.mp3" type="audio/mpeg" controls ></audio><br>
+<button onclick="play('audio4');">PLAY id="audio4" src="http://cpt.aws.af.cm/cpt/hooray.mp3" type="audio/mpeg" controls</button><br>
 
+
+<br>Android Video tags<br>
+<video id="video1" src="http://cpt.aws.af.cm/cpt/workout.mp4" controls></video><br>
+<button onclick="play('video1');">PLAY id="video1" src="http://cpt.aws.af.cm/cpt/workout.mp4" controls</button><br>
+
+<video id="video2" src="http://cpt.aws.af.cm/cpt/workout.mp4" type="video/mp4" controls></video><br>
+<button onclick="play('video2');">PLAY id="video2" src="http://cpt.aws.af.cm/cpt/workout.mp4" type="video/mp4" controls</button><br>
+
+
+
+<br>Stuff???<br>
 <button onclick="test('hooray.mp3');">Load hooray.mp3</button><br>
 <button onclick="test('workout.mp4');">Load workout.mp4</button><br>
 <button onclick="test('jnk.mp3');">Load jnk.mp3</button><br>
