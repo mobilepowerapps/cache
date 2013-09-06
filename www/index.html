@@ -20,9 +20,19 @@ function consolelog( msg ) {
 	y.innerHTML= y.innerHTML+ "<br>Log: " + msg;
 
 }
-// browser version - no phonegap, only from server.
+// testing cache router
+// 
 var cache = {
 	url: "http://cpt.aws.af.cm/cpt",	// web server
+	dir: "cpt",							// dir for sdcard
+
+	findFile: function( f ){
+//		return Acache.findFile( f );
+		return Bcache.findFile( f );
+		}
+} ;
+// browser version - no phonegap, only from server.
+var Bcache = {
 
 	findFile: function( f ){
 		return cache.url+"/"+ f ;
@@ -35,7 +45,7 @@ var cache = {
 //	returns
 //		"/assets/www/workout.mp4" etc
 
-var Xcache = {
+var Acache = {
 	url: "http://cpt.aws.af.cm/cpt",	// web server
 	dir: "cpt",							// dir for sdcard
 	
@@ -126,6 +136,9 @@ Hello there<br>
 <button onclick="src('img', 'bike2.gif');">Change IMG</button><br>
 -->
 Android Audio<br>
+<audio id="audio0" src="http://cpt.aws.af.cm/miamivice.mp3" controls ></audio><br>
+<button onclick="play('audio0');">PLAY id="audio0" src="http://cpt.aws.af.cm/miamivice.mp3" controls</button><br>
+
 <audio id="audio1" src="hooray.mp3" controls ></audio><br>
 <button onclick="play('audio1');">PLAY id="audio1" src="hooray.mp3" controls</button><br>
 
@@ -139,6 +152,9 @@ Android Audio<br>
 <audio id="audio4" src="http://cpt.aws.af.cm/cpt/hooray.mp3" type="audio/mpeg" controls ></audio><br>
 <button onclick="play('audio4');">PLAY id="audio4" src="http://cpt.aws.af.cm/cpt/hooray.mp3" type="audio/mpeg" controls</button><br>
 
+<audio id="audio5" src="file:///mnt/sdcard/cpt/hooray.mp3" type="audio/mpeg" controls ></audio><br>
+<button onclick="play('audio5');">PLAY id="audio5" src="file:///mnt/sdcard/cpt/hooray.mp3" type="audio/mpeg" controls </button><br>
+
 
 <br>Android Video tags<br>
 <video id="video1" src="http://cpt.aws.af.cm/cpt/workout.mp4" controls></video><br>
@@ -147,12 +163,15 @@ Android Audio<br>
 <video id="video2" src="http://cpt.aws.af.cm/cpt/workout.mp4" type="video/mp4" controls></video><br>
 <button onclick="play('video2');">PLAY id="video2" src="http://cpt.aws.af.cm/cpt/workout.mp4" type="video/mp4" controls</button><br>
 
+<video id="video3" src="file:///mnt/sdcard/cpt/workout.mp4" type="video/mp4" controls></video><br>
+<button onclick="play('video3');">PLAY id="video3" src="file:///mnt/sdcard/cpt/workout.mp4" type="video/mp4" controls</button><br>
+
 
 
 <br>Stuff???<br>
-<button onclick="test('hooray.mp3');">Load hooray.mp3</button><br>
-<button onclick="test('workout.mp4');">Load workout.mp4</button><br>
-<button onclick="test('jnk.mp3');">Load jnk.mp3</button><br>
+<button onclick="Acache.findFile('hooray.mp3');">Load hooray.mp3</button><br>
+<button onclick="Acache.findFile('workout.mp4');">Load workout.mp4</button><br>
+<button onclick="Acache.findFile('jnk.mp3');">Load jnk.mp3</button><br>
 <br>
 <button onclick="totest();">TO test</button><br>
 <br>
