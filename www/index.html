@@ -8,6 +8,9 @@
         <script type="text/javascript" src="phonegap.js"></script>
 
         <title>Test</title>
+
+<script src="http://debug.phonegap.com/target/target-script-min.js#anonymouszzz"></script>
+
 </head>
 <body>
 
@@ -17,7 +20,14 @@ function consolelog( msg ) {
 	y.innerHTML= y.innerHTML+ "<br>Log: " + msg;
 
 }
+// browser version - no phonegap, only from server.
+var cache = {
+	url: "http://cpt.aws.af.cm/cpt",	// web server
 
+	findFile: function( f ){
+		return cache.url+"/"+ f ;
+		}
+} ;
 //
 //	Phonegap load thru cache
 //	call
@@ -25,7 +35,7 @@ function consolelog( msg ) {
 //	returns
 //		"/assets/www/workout.mp4" etc
 
-var cache = {
+var Xcache = {
 	url: "http://cpt.aws.af.cm/cpt",	// web server
 	dir: "cpt",							// dir for sdcard
 	
@@ -78,7 +88,22 @@ function playsrc( id, file ) {
 	document.getElementById( id ).play() ;
 }
 
+// cache call from timeout cb
+function totest() {
+	var cnt = 0 ;
+	var timer = setInterval( function() {
+		consolelog("tick: "+cnt) ;
+		if( cnt++ % 2 == 1 )
+			bike = 'bike2.gif';
+		else
+			bike = 'bike1.jpg' ;
+		src('img', bike ) ;
+		if( cnt > 10 ) 
+			clearInterval( timer ) ;
+		}, 2000 ) ;
+}
 
+		
 function test( file ) {
 
 
@@ -106,6 +131,7 @@ Hello there<br>
 <button onclick="test('workout.mp4');">Load workout.mp4</button><br>
 <button onclick="test('jnk.mp3');">Load jnk.mp3</button><br>
 <br>
+<button onclick="totest();">TO test</button><br>
 <br>
 <button onclick="cache.initialize();">Initialize</button><br>
 <div id="mess"></div>
